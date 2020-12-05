@@ -33,7 +33,8 @@
 #include "debugprint.h"
 
 void debugPrint(char *fmt, ...) {
- 
+
+#define LIGHT_DEBUG 
 #ifdef LIGHT_DEBUG
   char buf[MAXBUFSIZE];
   int n = 0;
