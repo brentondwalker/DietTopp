@@ -182,7 +182,7 @@ void MeasureObj::tcpDispatcher() {
 			   "Can't send packet on TCP connection\n");
 
       // RECEIVE ANSWER
-      if (recv(tcpFd, (char *) &rep, sizeof(TcpControlMesg), 0) == -1)
+      if (recv(tcpFd, (char *) &rep, sizeof(TcpControlMesg), MSG_WAITALL) == -1)
 	throw MeasureObjEx(MO_ERROR_RECEIVE_FAILURE, 
 			   "Can't receive packet from TCP socket\n");
 
@@ -222,7 +222,7 @@ void MeasureObj::tcpDispatcher() {
       
       // RECEIVE ANSWER, rep.value1 contains the number of timevals to
       // receive
-      if (recv(tcpFd, (char *) &rep, sizeof(TcpControlMesg), 0) == -1)
+      if (recv(tcpFd, (char *) &rep, sizeof(TcpControlMesg), MSG_WAITALL) == -1)
 	throw MeasureObjEx(MO_ERROR_RECEIVE_FAILURE, 
 			   "Can't receive packet from TCP socket\n"); 
 
@@ -243,7 +243,7 @@ void MeasureObj::tcpDispatcher() {
 
     for(int j=0; j<ntohs(rep.value1); j++) {
       
-      if (recv(tcpFd, (char *) &timeVar, sizeof(struct timeval), 0) == -1)
+      if (recv(tcpFd, (char *) &timeVar, sizeof(struct timeval), MSG_WAITALL) == -1)
 	throw MeasureObjEx(MO_ERROR_RECEIVE_FAILURE, 
 			   "Can't receive packet from TCP socket\n");
       

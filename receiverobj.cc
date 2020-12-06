@@ -165,7 +165,7 @@ void ReceiverObj::handleProbeSession(int clientSocket) {
   debugPrint("connection accepted\n");
 
   while (!probeDone) {
-    if (recv(clientSocket, (char *)&tcm, sizeof(TcpControlMesg), 0) == -1)
+    if (recv(clientSocket, (char *)&tcm, sizeof(TcpControlMesg), MSG_WAITALL) == -1)
       throw ReceiverObjEx(ROE_ERROR_RECEIVE_FAILURE, 
 			  "Can't receive packet from TCP socket\n");
     
